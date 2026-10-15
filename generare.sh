@@ -29,11 +29,12 @@ for i in {1..10}; do
         # Definim un nume de fișier inexistent
         broken_file="$new_dir/broken_file_$j"
         # Creăm un link simbolic către fișierul inexistent
-        ln -s "$broken_file" "$new_dir/link_to_broken_file_$j"
+        # -f: rularea repetată nu mai eșuează cu "File exists"
+        ln -sf "$broken_file" "$new_dir/link_to_broken_file_$j"
         
         # Creăm și un link simbolic care duce la un director inexistent
         broken_dir="$new_dir/broken_directory_$j"
-        ln -s "$broken_dir" "$new_dir/link_to_broken_directory_$j"
+        ln -sfn "$broken_dir" "$new_dir/link_to_broken_directory_$j"
     done
 done
 
